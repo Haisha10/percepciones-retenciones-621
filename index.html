@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="assets/css/bootstrap-icons.css">
   <link rel="stylesheet" href="assets/css/style.css">
+
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+
   <title>Percepciones y Retenciones - FV 621</title>
   <link rel="icon" type="image/x-icon" href="/assets/img/icon.png">
 </head>
@@ -21,16 +25,27 @@
         <a class="navbar-brand" href="#">Un nombre de proyecto</a>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-1-square-fill"></i> Comprobante de percepcion</a>
+            <a class="nav-link active" aria-current="page" href="#">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#percepcionModal" data-bs-whatever="@mdo">
+                <i class="bi bi-1-square-fill"></i>  Comprobante de percepción
+              </button>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-2-square-fill"></i> Comprobante de pago con percepcion</a>
+            <a class="nav-link active" aria-current="page" href="#">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#comprobantePercepcionModal" data-bs-whatever="@fat">
+                <i class="bi bi-2-square-fill"></i>  Comprobante de pago con percepción
+              </button>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-3-square-fill"></i> Comprobante de retencion</a>
+            <a class="nav-link active" aria-current="page" href="#">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#retencionModal" data-bs-whatever="@getbootstrap">
+                <i class="bi bi-3-square-fill"></i>  Comprobante de retención
+              </button>
+            </a>
           </li>
         </ul>
-
         <div class="nav-link">
           <div class="form-check form-switch">
             <input type="checkbox" class="form-check-input" id="darkSwitch" checked>
@@ -40,5 +55,152 @@
       </div>
     </div>
   </nav>
+  
+  <div class="container">    
+    <div class="modal fade" id="percepcionModal" tabindex="-1" aria-labelledby="percepcionModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Comprobante de percepción</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">RUC del agente de percepción</th>
+                  <th scope="col">Serie del comprobante de percepción</th>
+                  <th scope="col">Número del comprobante de percepción</th>
+                  <th scope="col">Fecha de emisión del comprobante de percepción</th>
+                  <th scope="col">Monto del comprobante de percepción</th>
+                  <th scope="col">Tipo de comprobante de pago</th>
+                  <th scope="col">Serie del comprobante de pago</th>
+                  <th scope="col">Número de comprobante de pago</th>
+                  <th scope="col">Fecha de emisión del comprobante de pago</th>
+                  <th scope="col">Valor total del comprobante de pago</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>20100923611</td>
+                  <td>P001</td>
+                  <td>00001234</td>
+                  <td>28/07/2022</td>
+                  <td>100.00</td>
+                  <td>01</td>
+                  <td>F001</td>
+                  <td>00001234</td>
+                  <td>29/07/2022</td>
+                  <td>1000.00</td>
+                </tr>
+              </tbody>
+            </table>
+            
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Send message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal fade" id="comprobantePercepcionModal" tabindex="-1" aria-labelledby="percepcionModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Comprobante de pago con percepción</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">RUC del agente de percepción</th>
+                  <th scope="col">Tipo de comprobante de pago</th>
+                  <th scope="col">Serie del comprobante de pago</th>
+                  <th scope="col">Número del comprobante de pago</th>
+                  <th scope="col">Fecha de emisión del comprobante de pago</th>
+                  <th scope="col">Monto del comprobante de pago de percepcion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>20100923611</td>
+                  <td>01</td>
+                  <td>F001</td>
+                  <td>00001234</td>
+                  <td>28/07/2022</td>
+                  <td>100.00</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Send message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="retencionModal" tabindex="-1" aria-labelledby="percepcionModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Comprobante de retención</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">RUC del agente de retención</th>
+                  <th scope="col">Serie del comprobante de retención</th>
+                  <th scope="col">Número del comprobante de retención</th>
+                  <th scope="col">Fecha de emisión del comprobante de retención</th>
+                  <th scope="col">Monto del comprobante de retencion</th>
+                  <th scope="col">Tipo del comprobahte de pago</th>
+                  <th scope="col">Serie del comprbante de pago</th>
+                  <th scope="col">Número del comprobante de pago</th>
+                  <th scope="col">Fecha de emisión del comprobante de pago</th>
+                  <th scope="col">Valor total del comprobante de pago</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>20100923611</td>
+                  <td>R001</td>
+                  <td>00001234</td>
+                  <td>28/07/2022</td>
+                  <td>100.00</td>
+                  <td>01</td>
+                  <td>F001</td>
+                  <td>00001234</td>
+                  <td>29/07/2022</td>
+                  <td>1000.00</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Send message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
