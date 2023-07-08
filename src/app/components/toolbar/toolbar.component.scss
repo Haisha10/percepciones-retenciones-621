@@ -1,0 +1,43 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.quick-access-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+  button {
+    margin-left: 8px;
+    background-color: aliceblue;
+    color: black;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    height: 40px;
+    border: 1px solid transparent;
+    &:hover {
+      background-color: #e6f7ff;
+      color: #1890ff;
+      border-color: #1890ff;
+    }
+  }
+}
+
+.action-buttons {
+  button {
+    margin-left: 8px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    height: 40px;
+    width: auto;
+    border: 1px solid transparent;
+    &:hover {
+      background-color: #ffe6e6;
+      color: #ff1818;
+      border-color: #ff1818;
+    }
+  }
+}
