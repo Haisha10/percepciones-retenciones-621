@@ -3,15 +3,36 @@
     <img src="assets/img/logo.png" alt="Logo" width="50" height="50" />
     <span>Percepciones y Retenciones - FV621</span>
     <div class="quick-access-buttons">
-      <button mat-fab extended routerLink="/home" routerLinkActive="active">
+      <button
+        mat-fab
+        extended
+        routerLink="/comprobantes-de-pago-utilizados-como-percepcion"
+        routerLinkActive="active"
+        aria-label="Comprobantes de pago utilizados como comprobantes de percepción"
+        matTooltip="Comprobantes de pago utilizados como comprobantes de percepción"
+      >
         <mat-icon>looks_one</mat-icon>
-        <span>Comprobantes de percepción</span>
-      </button>
-      <button mat-fab extended routerLink="/home" routerLinkActive="active">
-        <mat-icon>looks_two</mat-icon>
         <span>Comprobantes de pago como percepción</span>
       </button>
-      <button mat-fab extended routerLink="/home" routerLinkActive="active">
+      <button
+        mat-fab
+        extended
+        routerLink="/home"
+        routerLinkActive="active"
+        aria-label="Comprobantes de percepción"
+        matTooltip="Comprobantes de percepción"
+      >
+        <mat-icon>looks_two</mat-icon>
+        <span>Comprobantes de percepción</span>
+      </button>
+      <button
+        mat-fab
+        extended
+        routerLink="/home"
+        routerLinkActive="active"
+        aria-label="Comprobantes de retención"
+        matTooltip="Comprobantes de retención"
+      >
         <mat-icon>looks_3</mat-icon>
         <span>Comprobantes de retención</span>
       </button>
@@ -19,17 +40,17 @@
     <span class="spacer"></span>
     <div class="action-buttons">
       <button
-      mat-fab
-      matTooltip="Warn"
-      color="warn"
-      aria-label="Apoya el proyecto"
-      matTooltip="Apoya el proyecto"
-      (click)="
-        openLink('https://github.com/Haisha10/percepciones-retenciones-621')
-      "
-    >
-      <mat-icon>favorite</mat-icon>
-    </button>
+        mat-fab
+        matTooltip="Warn"
+        color="warn"
+        aria-label="Apoya el proyecto"
+        matTooltip="Apoya el proyecto"
+        (click)="
+          openLink('https://github.com/Haisha10/percepciones-retenciones-621')
+        "
+      >
+        <mat-icon>favorite</mat-icon>
+      </button>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
