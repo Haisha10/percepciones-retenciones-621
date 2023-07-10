@@ -5,35 +5,43 @@
         <mat-card-title>Información General</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <form class="example-form">
+        <form class="example-form" [formGroup]="generalInformationForm">
           <mat-form-field class="example-full-width">
             <mat-label>PDT</mat-label>
-            <input matInput placeholder="PDT" value="0621" disabled />
+            <input matInput placeholder="PDT" formControlName="pdt" />
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>RUC</mat-label>
-            <input matInput placeholder="RUC" [disabled]="" />
+            <input matInput placeholder="RUC" formControlName="ruc" />
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>Periodo AAAAMM</mat-label>
-            <input
-              matInput
-              placeholder="AAAAMM"
-              value="{{ getLastMonth() }}"
-              [disabled]=""
-            />
+            <input matInput placeholder="AAAAMM" formControlName="period" />
           </mat-form-field>
         </form>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-flat-button color="warn">GRABAR</button>
-        <button mat-flat-button>EDITAR</button>
+        <button
+          mat-flat-button
+          color="warn"
+          [disabled]="!isEditable"
+          (click)="saveGeneralInformation()"
+        >
+          GRABAR
+        </button>
+        <button
+          mat-flat-button
+          [disabled]="isEditable"
+          (click)="editGeneralInformation()"
+        >
+          EDITAR
+        </button>
       </mat-card-actions>
     </mat-card>
 
     <mat-card class="card">
       <mat-card-header>
-        <mat-card-title>Detalle de la Estructura</mat-card-title>
+        <mat-card-title>Descargar la Estructura</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <mat-label>Nombre del archivo:</mat-label>
@@ -44,10 +52,22 @@
       </mat-card-actions>
     </mat-card>
   </div>
+
   <div class="main-card-container">
     <mat-card class="main-card">
       <mat-card-header>
-        <mat-card-title>Detalle de la Estructura</mat-card-title>
+        <div class="details">
+          <mat-card-title>Detalle de la Estructura</mat-card-title>
+          <h2>Periodo: {{ getMonthNameAndYear()}}</h2>
+          <h3>Monto total: {{ totalAmount | currency: "PEN"  }}</h3>
+          <h3>Cantidad de registros: {{ dataSource.data.length }}</h3>
+        </div>
+        <div class="button-container">
+          <button mat-fab extended color="primary" aria-label="Add">
+            <mat-icon>add</mat-icon>
+            Agregar
+          </button>
+        </div>
       </mat-card-header>
       <mat-card-content>
         <table
@@ -67,7 +87,9 @@
             <td mat-cell *matCellDef="let element">{{ element.ruc }}</td>
           </ng-container>
           <ng-container matColumnDef="type">
-            <th mat-header-cell *matHeaderCellDef>Tipo de comprobante de pago</th>
+            <th mat-header-cell *matHeaderCellDef>
+              Tipo de comprobante de pago
+            </th>
             <td mat-cell *matCellDef="let element">{{ element.type }}</td>
           </ng-container>
           <ng-container matColumnDef="serial">
@@ -90,11 +112,16 @@
             <th mat-header-cell *matHeaderCellDef>
               Monto del comprobante de pago de percepcion
             </th>
-            <td mat-cell *matCellDef="let element">{{ element.amount | currency : "PEN" }}</td>
+            <td mat-cell *matCellDef="let element">
+              {{ element.amount | currency : "PEN" }}
+            </td>
           </ng-container>
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>Acciones</th>
             <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="primary" aria-label="Editar">
+                <mat-icon>edit</mat-icon>
+              </button>
               <button mat-icon-button color="warn" aria-label="Eliminar">
                 <mat-icon>delete</mat-icon>
               </button>
