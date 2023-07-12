@@ -1,0 +1,69 @@
+<div class="dialog">
+  <form [formGroup]="pagoComoPercepcionForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+      <div class="row">
+        <h2>Comprobantes de pago utilizados como comprobantes de percepción</h2>
+        <mat-form-field appearance="outline" class="ruc">
+          <mat-label>RUC del agente de percepción</mat-label>
+          <input matInput placeholder="RUC" formControlName="ruc" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-label>Comprobante de pago</mat-label>
+        <mat-divider></mat-divider>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline" class="type">
+          <mat-label>Tipo de comprobante de pago</mat-label>
+          <mat-select formControlName="type">
+            <mat-option value="01">01: Factura</mat-option>
+            <mat-option value="08">08: Nota de débito</mat-option>
+            <mat-option value="12"
+              >12: Ticket de máquina registradora</mat-option
+            >
+            <!--<mat-option value="99">99: Otros</mat-option>-->
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline" class="serial">
+          <mat-label>Serie</mat-label>
+          <input matInput placeholder="Serie" formControlName="serial" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="number">
+          <mat-label>Número</mat-label>
+          <input matInput placeholder="Número" formControlName="number" />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline" class="issueDate">
+          <mat-label>Fecha de emisión</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="DD/MM/AAAA"
+            formControlName="issueDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="amount">
+          <mat-label> Monto de percepción </mat-label>
+          <input matInput placeholder="S/" formControlName="amount" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">
+        Cancelar
+      </button>
+      <button mat-raised-button color="primary" type="submit">
+        {{ data ? "Actualizar" : "Grabar" }}
+      </button>
+    </div>
+  </form>
+</div>

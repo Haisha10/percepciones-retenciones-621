@@ -3,6 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PagoComoPercepcion } from 'src/app/models/pago-como-percepcion.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PagoComoPercepcionAddEditComponent } from './pago-como-percepcion-add-edit/pago-como-percepcion-add-edit.component';
 
 @Component({
   selector: 'app-pago-como-percepcion',
@@ -32,7 +34,6 @@ export class PagoComoPercepcionComponent implements OnInit {
   generalInformationForm: FormGroup;
   data: PagoComoPercepcion[] = [
     {
-      id: 1,
       ruc: '20123456789',
       type: '01',
       serial: 'F001',
@@ -46,6 +47,7 @@ export class PagoComoPercepcionComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _snackBar: SnackBarService,
+    private _dialog: MatDialog
   ) {
     this.generalInformationForm = this._formBuilder.group({
       pdt: ['0621'],
@@ -118,5 +120,20 @@ export class PagoComoPercepcionComponent implements OnInit {
     this.generalInformationForm.get('ruc')?.enable();
     this.generalInformationForm.get('period')?.enable();
     this.isEditable = true;
+  }
+
+  openAddEditDialog(): void {
+    const dialogRef = this._dialog.open(PagoComoPercepcionAddEditComponent, {
+      width: '600px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.data.push(result);
+        this.getTableData();
+        this.totalAmount = this.getTotalAmount();
+      }
+    }
+    );
   }
 }

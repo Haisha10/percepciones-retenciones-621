@@ -19,11 +19,19 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatDividerModule} from '@angular/material/divider';
+
+// Other
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
 
 // Peru locale
 import { registerLocaleData } from '@angular/common';
 import locales from '@angular/common/locales/es-PE';
+import { PagoComoPercepcionAddEditComponent } from './components/pago-como-percepcion/pago-como-percepcion-add-edit/pago-como-percepcion-add-edit.component';
 
 registerLocaleData(locales, 'es-PE');
 
@@ -31,7 +39,8 @@ registerLocaleData(locales, 'es-PE');
   declarations: [
     AppComponent,
     ToolbarComponent,
-    PagoComoPercepcionComponent
+    PagoComoPercepcionComponent,
+    PagoComoPercepcionAddEditComponent
   ],
   imports: [
     BrowserModule,
@@ -46,8 +55,13 @@ registerLocaleData(locales, 'es-PE');
     MatTableModule,
     MatSortModule,
     MatSnackBarModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatDividerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatNativeDateModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-PE' }],
   bootstrap: [AppComponent]

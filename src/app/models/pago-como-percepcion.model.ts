@@ -1,5 +1,4 @@
 export interface PagoComoPercepcion {
-  id: number;
   ruc: string;
   type: string;
   serial: string;

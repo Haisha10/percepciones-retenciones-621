@@ -1,0 +1,36 @@
+.row {
+  width: 100%;
+
+  .ruc, .type {
+    width: 100%;
+  }
+
+  .serial {
+    width: 45%;
+    margin-right: 5%;
+  }
+
+  .number {
+    width: 50%;
+  }
+
+  .issueDate {
+    width: 45%;
+    margin-right: 5%;
+  }
+
+  .amount {
+    width: 50%;
+  }
+}
+
+.action {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+mat-divider {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
