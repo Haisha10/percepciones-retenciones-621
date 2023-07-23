@@ -5,11 +5,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PagoComoPercepcionAddEditComponent } from './pago-como-percepcion-add-edit/pago-como-percepcion-add-edit.component';
+import { PagoComoPercepcionService } from 'src/app/services/pago-como-percepcion.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-pago-como-percepcion',
   templateUrl: './pago-como-percepcion.component.html',
-  styleUrls: ['./pago-como-percepcion.component.scss']
+  styleUrls: ['./pago-como-percepcion.component.scss'],
+  providers: [DatePipe]
 })
 export class PagoComoPercepcionComponent implements OnInit {
   // Table data
@@ -32,22 +35,14 @@ export class PagoComoPercepcionComponent implements OnInit {
 
   // Data
   generalInformationForm: FormGroup;
-  data: PagoComoPercepcion[] = [
-    {
-      ruc: '20123456789',
-      type: '01',
-      serial: 'F001',
-      number: '00000001',
-      issueDate: '28/08/2023',
-      amount: 100.00
-    }
-  ];
   totalAmount: number = 0;
 
   constructor(
     private _formBuilder: FormBuilder,
     private _snackBar: SnackBarService,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private _pagoComoPercepcionService: PagoComoPercepcionService,
+    private _datePipe: DatePipe
   ) {
     this.generalInformationForm = this._formBuilder.group({
       pdt: ['0621'],
@@ -73,13 +68,13 @@ export class PagoComoPercepcionComponent implements OnInit {
   }
 
   getTableData(): void {
-    this.dataSource = new MatTableDataSource(this.data);
+    this.dataSource = new MatTableDataSource(this._pagoComoPercepcionService.getData());
   }
 
   getTotalAmount(): number {
     var total: number = 0;
     this.dataSource.data.forEach((row: any) => {
-      total += row.amount;
+      total += parseFloat(row.amount);
     }
     );
     return total;
@@ -90,6 +85,8 @@ export class PagoComoPercepcionComponent implements OnInit {
       return '';
     }
     let date: Date = new Date();
+    date.setFullYear(parseInt(this.generalInformationForm.value.period.substring(0, 4)));
+    date.setMonth(parseInt(this.generalInformationForm.value.period.substring(4, 6)) - 1);
     let month: string = date.toLocaleString('default', { month: 'long' });
     let year: string = date.getFullYear().toString();
 
@@ -122,18 +119,68 @@ export class PagoComoPercepcionComponent implements OnInit {
     this.isEditable = true;
   }
 
-  openAddEditDialog(): void {
+  openAddDialog(): void {
     const dialogRef = this._dialog.open(PagoComoPercepcionAddEditComponent, {
       width: '600px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.data.push(result);
         this.getTableData();
         this.totalAmount = this.getTotalAmount();
       }
     }
     );
+  }
+
+  openEditDialog(row: PagoComoPercepcion): void {
+    const dialogRef = this._dialog.open(PagoComoPercepcionAddEditComponent, {
+      width: '600px',
+      data: row
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getTableData();
+        this.totalAmount = this.getTotalAmount();
+      }
+    }
+    );
+  }
+
+  async delete(element: PagoComoPercepcion): Promise<void> {
+    if (await this._snackBar.showDeleteConfirmation()) {
+      this._pagoComoPercepcionService
+        .deleteData(element)
+        .subscribe({
+          next: () => {
+            this.getTableData();
+            this.totalAmount = this.getTotalAmount();
+          },
+          error: (error) => {
+            this._snackBar.showMessage(error.message);
+          }
+        });
+    } else {
+      this._snackBar.showMessage('Operación cancelada.');
+    }
+  }
+
+  formatDate(date: Date): string {
+    return this._datePipe.transform(date, 'dd/MM/yyyy') || '';
+  }
+
+  deleteAll(): void {
+    this._pagoComoPercepcionService
+      .deleteAllData()
+      .subscribe({
+        next: () => {
+          this.getTableData();
+          this.totalAmount = this.getTotalAmount();
+        },
+        error: (error) => {
+          this._snackBar.showMessage(error.message);
+        }
+      });
   }
 }

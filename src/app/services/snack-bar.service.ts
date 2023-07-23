@@ -16,9 +16,9 @@ export class SnackBarService {
     });
   }
 
-  showDeleteConfirmation(id: number): Promise<boolean> {
+  showDeleteConfirmation(): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
-      const snackBarRef = this._snackBar.open('¿Estás seguro de que deseas eliminar este elemento?', 'Confirmar', {
+      const snackBarRef = this._snackBar.open('¿Está seguro de que deseas eliminar este resgistro?', 'Confirmar', {
         duration: 3000,
         panelClass: ['snackbar-overlay']
       });

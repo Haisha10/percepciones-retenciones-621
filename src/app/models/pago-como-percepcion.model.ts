@@ -3,6 +3,6 @@ export interface PagoComoPercepcion {
   type: string;
   serial: string;
   number: string;
-  issueDate: string;
-  amount: number;
+  issueDate: Date;
+  amount: string;
 }
